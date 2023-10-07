@@ -18,7 +18,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function find(int $id): ?UserDTO
     {
-        return UserDTO::fromObject(
+        return UserDTO::from(
             $this->findModel($id)
         );
     }
@@ -27,7 +27,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = User::create($data->insertable());
 
-        return UserDTO::fromObject($user);
+        return UserDTO::from($user);
     }
 
     public function update(int $id, UserDTO $newData): bool
@@ -43,7 +43,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function findByEmail(string $email): ?UserDTO
     {
-        return UserDTO::fromObject(
+        return UserDTO::from(
             $this->findModelBy('email', $email)
         );
     }

@@ -64,11 +64,11 @@ class LoginRequest extends FormRequest
 
     public function getUserDTO(): UserDTO
     {
-        return new UserDTO([
-            'first_name' => $this->getFirstName(),
-            'last_name' => $this->getLastName(),
-            'email' => $this->getEmail(),
-            'password' => $this->getPassword(),
-        ]);
+        return new UserDTO(
+            first_name: $this->getFirstName(),
+            last_name: $this->getLastName(),
+            email: $this->getEmail(),
+            password: $this->getPassword(),
+        );
     }
 }

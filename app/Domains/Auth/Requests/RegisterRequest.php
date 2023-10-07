@@ -52,9 +52,9 @@ class RegisterRequest extends FormRequest
 
     public function getUserDTO(): UserDTO
     {
-        return new UserDTO([
-            'email' => $this->getEmail(),
-            'password' => $this->getPass(),
-        ]);
+        return new UserDTO(
+            email: $this->getEmail(),
+            password: $this->getPass(),
+        );
     }
 }
