@@ -39,5 +39,7 @@
     "DEFAULT_SUCCESS_MESSAGE": "Your request has been successfully processed",
     "DEFAULT_NOT_FOUND": "Requested resource not found.",
     "NOT_FOUND_ATTRIBUTABLE": "Requested :attribute not found.",
-    "DEFAULT_FAILED_MESSAGE": "A problem occurred in the requested process."
+    "DEFAULT_FAILED_MESSAGE": "A problem occurred in the requested process.",
+    "CREDENTIALS_ERROR": "email or password is wrong.",
+    "NEW_TOKEN_GENERATED": "New token generated successfully"
 }

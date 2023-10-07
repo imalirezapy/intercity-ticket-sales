@@ -39,5 +39,7 @@
     "DEFAULT_NOT_FOUND": "داده مورد نظر شما وجود ندارد",
     "NOT_FOUND_ATTRIBUTABLE": ":attribute مورد نظر وجود ندارد.",
     "DEFAULT_SUCCESS_MESSAGE": "فرآیند مورد نظر شما با موفقیت انجام شد.",
-    "DEFAULT_FAILED_MESSAGE": "مشکلی در فرآیند مورد نظر رخ داد."
+    "DEFAULT_FAILED_MESSAGE": "مشکلی در فرآیند مورد نظر رخ داد.",
+    "CREDENTIALS_ERROR": "ایمیل یا پسورد شما اشتباه است.",
+    "NEW_TOKEN_GENERATED": "توکن جدید با موفقیت ایجاد شد."
 }
