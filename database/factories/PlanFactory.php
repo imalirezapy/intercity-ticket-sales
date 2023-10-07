@@ -56,10 +56,10 @@ class PlanFactory extends Factory
     {
         return [
             'code' => $this->faker->sentence(),
-            'departure_city' => Arr::random($this->cities),
-            'arrival_city' => Arr::random($this->cities),
-            'departure_terminal' => Arr::random($this->cities) . '-tr' . fake()->randomNumber(1),
-            'arrival_terminal' => Arr::random($this->cities) . '-tr' . fake()->randomNumber(1),
+            'departure_city' => $departCity = Arr::random($this->cities),
+            'arrival_city' => $arriveCity = Arr::random($this->cities),
+            'departure_terminal' => $departCity . '-tr' . fake()->randomNumber(1),
+            'arrival_terminal' => $arriveCity . '-tr' . fake()->randomNumber(1),
             'departure_week_day' => fake()->numberBetween(0, 6),
             'departure_time' => fake()->dateTime(),
             'duration' => fake()->numberBetween(60, 450),

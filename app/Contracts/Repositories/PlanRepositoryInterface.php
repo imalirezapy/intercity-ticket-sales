@@ -24,5 +24,5 @@ interface PlanRepositoryInterface
 
     public function getArrivalCitiesListByDeparture(string $departureCityCode): Collection|EloquentCollection;
 
-//    public function terminalListByCityCode(string $cityCode): Collection|EloquentCollection;
+    public function getTerminalListByCityCode(string $cityCode): Collection|EloquentCollection;
 }

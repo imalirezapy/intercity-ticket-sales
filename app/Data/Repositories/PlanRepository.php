@@ -62,4 +62,13 @@ class PlanRepository implements PlanRepositoryInterface
                 ->distinct('arrival_city')
                 ->get();
     }
+
+    public function getTerminalListByCityCode(string $cityCode): Collection|EloquentCollection
+    {
+        return Plan::select('departure_city', 'arrival_city', 'departure_terminal')
+            ->where('departure_city', $cityCode)
+            ->orWhere('arrival_city', $cityCode)
+            ->distinct('departure_terminal')
+            ->get();
+    }
 }
