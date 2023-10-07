@@ -174,6 +174,7 @@ return [
          * lucid Service Providers
          */
         App\Services\Auth\Providers\AuthServiceProvider::class,
+        App\Services\Ticket\Providers\TicketServiceProvider::class,
     ])->toArray(),
 
     /*
