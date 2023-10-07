@@ -20,5 +20,6 @@ Route::prefix('v1')->group(function () {
         ->prefix('plans')
         ->group(function () {
             Route::match(['post', 'get'], '/departure-cities', 'getDepartureCities');
+            Route::match(['post', 'get'], '/arrival-cities', 'getArrivalCities');
         });
 });

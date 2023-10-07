@@ -20,9 +20,9 @@ interface PlanRepositoryInterface
 
     public function findByCode(string $code): ?PlanDTO;
 
-    public function getListByDepartureCity(): Collection|EloquentCollection;
+    public function getDepartureCitiesList(): Collection|EloquentCollection;
 
-//    public function getListByArrivalCity(string $cityCode): Collection|EloquentCollection;
-//
+    public function getArrivalCitiesListByDeparture(string $departureCityCode): Collection|EloquentCollection;
+
 //    public function terminalListByCityCode(string $cityCode): Collection|EloquentCollection;
 }

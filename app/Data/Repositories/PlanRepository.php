@@ -19,7 +19,7 @@ class PlanRepository implements PlanRepositoryInterface
     public function find(int $id): ?PlanDTO
     {
         return PlanDTO::from(
-            $this->find($id)
+            $this->findModel($id)
         );
     }
 
@@ -48,10 +48,18 @@ class PlanRepository implements PlanRepositoryInterface
         return Plan::where($column, $value)->first();
     }
 
-    public function getListByDepartureCity(): Collection|EloquentCollection
+    public function getDepartureCitiesList(): Collection|EloquentCollection
     {
         return Plan::select('departure_city')
             ->distinct()
             ->get();
+    }
+
+    public function getArrivalCitiesListByDeparture(string $departureCityCode): Collection|EloquentCollection
+    {
+        return Plan::select('departure_city', 'arrival_city')
+                ->where('departure_city', $departureCityCode)
+                ->distinct('arrival_city')
+                ->get();
     }
 }

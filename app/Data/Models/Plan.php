@@ -2,6 +2,7 @@
 
 namespace App\Data\Models;
 
+use App\Enums\TablesEnum;
 use Database\Factories\PlanFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Plan extends Model
 {
     use HasFactory;
+
+    protected $table = TablesEnum::PLANS->value;
+    protected $guarded = []; // FIXME: dev only
 
     protected $casts = [
         'departure_time' => 'timestamp',
