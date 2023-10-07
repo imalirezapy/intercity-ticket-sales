@@ -2,27 +2,23 @@
 
 namespace App\Domains\Ticket\Jobs;
 
+use App\Contracts\Repositories\PlanRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 use Lucid\Units\Job;
 
 class GetDepartureCitiesListJob extends Job
 {
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    public function __construct(
+        private readonly PlanRepositoryInterface $repository,
+    )
     {
         //
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
+    public function handle(): Collection|EloquentCollection
     {
-        //
+        return $this->repository->getListByDepartureCity();
     }
 }

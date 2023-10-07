@@ -11,3 +11,14 @@
 |
 */
 
+use App\Services\Ticket\Http\Controllers\V1\PlanController;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('v1')->group(function () {
+
+    Route::controller(PlanController::class)
+        ->prefix('plans')
+        ->group(function () {
+            Route::match(['post', 'get'], '/departure-cities', 'getDepartureCities');
+        });
+});
