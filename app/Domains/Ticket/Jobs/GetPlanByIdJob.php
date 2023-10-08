@@ -6,7 +6,7 @@ use App\Contracts\Repositories\PlanRepositoryInterface;
 use App\Data\DTO\PlanDTO;
 use Lucid\Units\Job;
 
-class GetPlanByUlidJob extends Job
+class GetPlanByIdJob extends Job
 {
     /**
      * Create a new job instance.
@@ -19,7 +19,7 @@ class GetPlanByUlidJob extends Job
         //
     }
 
-    public function handle(string $planId): ?PlanDTO
+    public function handle(int $planId): ?PlanDTO
     {
         return $this->repository->find($planId);
     }

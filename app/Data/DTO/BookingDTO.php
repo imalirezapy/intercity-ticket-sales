@@ -30,6 +30,7 @@ class BookingDTO extends DTO
         public int|null           $count = null,
         public array|string|null  $seats_numbers = null,
         public Carbon|string|null $expires_at = null,
+        public Carbon|string|null $created_at = null,
         public Carbon|string|null $updated_at = null,
         public Carbon|string|null $deleted_at = null,
     )

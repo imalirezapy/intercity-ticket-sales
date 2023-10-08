@@ -12,12 +12,12 @@ use Illuminate\Support\Collection;
 class PlanRepository implements PlanRepositoryInterface
 {
 
-    public function findModel(string $id): ?Plan
+    public function findModel(int $id): ?Plan
     {
         return Plan::find($id);
     }
 
-    public function find(string $id): ?PlanDTO
+    public function find(int $id): ?PlanDTO
     {
         return PlanDTO::from(
             $this->findModel($id)
@@ -31,7 +31,7 @@ class PlanRepository implements PlanRepositoryInterface
         return PlanDTO::from($plan);
     }
 
-    public function update(string $id, PlanDTO $newData): bool
+    public function update(int $id, PlanDTO $newData): bool
     {
         return $this->findModel($id)
             ->update($newData->insertable());

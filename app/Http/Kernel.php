@@ -66,6 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         // Ticket
-        'plan_exists' => \PlanExists::class,
+        'plan_exists' => \App\Services\Ticket\Http\Middleware\PlanExists::class,
     ];
 }

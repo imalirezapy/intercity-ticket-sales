@@ -25,6 +25,8 @@ abstract class DTO
             : new static(...(self::instantiable($model)));
     }
 
+
+
     public function getModel(): Model|null
     {
         if ($this->model === null) {
@@ -51,7 +53,16 @@ abstract class DTO
     {
         return ($model->{static::$primaryKey} === null)
             ? false
-            : $model->getAttributes();
+            : static::getAttributes($model);
+    }
+
+    private static function getAttributes(Model $model): array
+    {
+        $attrs = [];
+        foreach (static::COLUMNS as $COLUMN) {
+            $attrs[$COLUMN] = $model->$COLUMN;
+        }
+        return $attrs;
     }
 
     private function findModel()

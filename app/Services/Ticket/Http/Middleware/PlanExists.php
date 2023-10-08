@@ -1,8 +1,9 @@
 <?php
-
+namespace App\Services\Ticket\Http\Middleware;
 
 use App\Composables\Responses\Features\ThrowsNotFound;
-use App\Domains\Ticket\Jobs\GetPlanByUlidJob;
+use App\Domains\Ticket\Jobs\GetPlanByIdJob;
+use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,7 +12,7 @@ class PlanExists
     use ThrowsNotFound;
 
     public function __construct(
-        private readonly GetPlanByUlidJob $getPlanByUlidJob,
+        private readonly GetPlanByIdJob $getPlanByIdJob,
     )
     {
     }
@@ -23,9 +24,10 @@ class PlanExists
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $this->getPlanByUlidJob->handle($request->route('planId'))){
+        if (! $this->getPlanByIdJob->handle($request->route('planId'))){
             $this->notFound();
         }
+
         return $next($request);
     }
 }

@@ -2,19 +2,19 @@
 
 namespace App\Data\Models;
 
+use App\Composables\Models\Attributes\PlanAttributes;
+use App\Composables\Models\Relations\PlanModelRelations;
 use App\Enums\TablesEnum;
+
 use Database\Factories\PlanFactory;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Plan extends Model
 {
-    use HasFactory, HasUlids;
-
-    protected $primaryKey = 'ulid';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    use HasFactory,
+        PlanAttributes,
+        PlanModelRelations;
 
     protected $table = TablesEnum::PLANS->value;
     protected $guarded = []; // FIXME: dev only

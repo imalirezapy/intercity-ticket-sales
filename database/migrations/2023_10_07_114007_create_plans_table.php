@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plans', function (Blueprint $table) {
-            $table->ulid()->primary();
+            $table->id();
             $table->string('departure_city');
             $table->string('arrival_city');
             $table->string('departure_terminal');
@@ -21,7 +21,8 @@ return new class extends Migration
             $table->timestamp('departure_time');
             $table->integer('duration');
             $table->integer('total_capacity');
-            $table->integer('remain_capacity_r');
+            $table->integer('remain_capacity_r')
+                ->default(0);
             $table->string('bus_type');
             $table->bigInteger('price_in_rial');
             $table->softDeletes();
