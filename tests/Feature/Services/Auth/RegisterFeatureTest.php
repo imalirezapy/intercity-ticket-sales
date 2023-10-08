@@ -12,6 +12,7 @@ class RegisterFeatureTest extends TestCase
     use RefreshDatabase,
         ResponseStructure;
 
+    private string $endpoint = 'api/v1/register';
     private User $user;
     private string $userPassword = 'password';
 
@@ -31,7 +32,7 @@ class RegisterFeatureTest extends TestCase
 
     public function testResponseUnprocessableIfEmailAlreadyExists()
     {
-        $response = $this->postJson('api/v1/register', [
+        $response = $this->postJson($this->endpoint, [
             'email' => $this->user->email,
             'password' => $this->userPassword,
         ]);
@@ -41,7 +42,7 @@ class RegisterFeatureTest extends TestCase
 
     public function testSuccessfulRegisterUser()
     {
-        $response = $this->postJson('api/v1/register', [
+        $response = $this->postJson($this->endpoint, [
             'email' => 'newUser@gmail.com',
             'password' => $this->userPassword,
         ]);

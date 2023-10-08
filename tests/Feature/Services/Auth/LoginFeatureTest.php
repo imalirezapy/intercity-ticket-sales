@@ -12,6 +12,7 @@ class LoginFeatureTest extends TestCase
     use RefreshDatabase,
         ResponseStructure;
 
+    private string $endpoint = 'api/v1/login';
     private User $user;
     private string $userPassword = 'password';
 
@@ -31,7 +32,7 @@ class LoginFeatureTest extends TestCase
 
     public function testResponseUnprocessableIfPasswordWasWrong(): void
     {
-        $response = $this->postJson('api/v1/login', [
+        $response = $this->postJson($this->endpoint, [
             'email' => $this->user->email,
             'password' => 'wrong-password',
         ]);
@@ -45,7 +46,7 @@ class LoginFeatureTest extends TestCase
 
     public function testResponseUnprocessableIfEmailNotExists()
     {
-        $response = $this->postJson('api/v1/login', [
+        $response = $this->postJson($this->endpoint, [
             'email' => 'notExists@gmail.com',
             'password' => 'password',
         ]);
@@ -59,7 +60,7 @@ class LoginFeatureTest extends TestCase
     public function testSuccessfulLoginUser(): void
     {
 
-        $response = $this->postJson('api/v1/login', [
+        $response = $this->postJson($this->endpoint, [
             'email' => $this->user->email,
             'password' => $this->userPassword,
         ]);
