@@ -79,6 +79,7 @@ class BookPlanRequest extends FormRequest
     public function getBookingDTO(): ?BookingDTO
     {
         return new BookingDTO(
+            user_id: auth()->id(),
             plan_id: $this->getPlanId(),
             count: $this->getPassengersCount(),
             seats_numbers: $this->getSeatsNumbers(),

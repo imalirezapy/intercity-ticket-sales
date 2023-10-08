@@ -11,6 +11,7 @@ class BookingDTO extends DTO
 {
     const COLUMNS = [
         'id',
+        'user_id',
         'plan_id',
         'count',
         'seats_numbers',
@@ -25,6 +26,7 @@ class BookingDTO extends DTO
 
     public function __construct(
         public int|null           $id = null,
+        public int|null           $user_id = null,
         public int|null           $plan_id = null,
         public int|null           $count = null,
         public array|string|null  $seats_numbers = null,

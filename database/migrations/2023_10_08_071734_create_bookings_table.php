@@ -14,6 +14,10 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained(TablesEnum::USERS->value)
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->foreignId('plan_id')
                 ->constrained(TablesEnum::PLANS->value)
                 ->cascadeOnDelete()

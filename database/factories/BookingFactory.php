@@ -20,6 +20,7 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => 1,
             'count' => $count = $this->faker->numberBetween(1, 15),
             'seats_numbers' => Arr::random(range(1, $count), $this->faker->numberBetween(1, $count)),
             'expires_at' => now()->addMinutes($this->faker->numberBetween(-5, 15)),

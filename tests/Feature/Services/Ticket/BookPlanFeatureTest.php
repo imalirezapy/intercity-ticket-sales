@@ -120,6 +120,7 @@ class BookPlanFeatureTest extends TestCase
             'total_capacity' => 5,
         ]);
         $plan->bookings()->create([
+            'user_id' => $this->user->id,
             'count' => $count,
             'seats_numbers' => $seatsNumbers,
         ]);
