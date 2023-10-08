@@ -24,7 +24,6 @@ class BookingDTO extends DTO
     protected string $repository = BookingRepositoryInterface::class;
 
     public function __construct(
-
         public int|null           $id = null,
         public int|null           $plan_id = null,
         public int|null           $count = null,
@@ -32,7 +31,6 @@ class BookingDTO extends DTO
         public Carbon|string|null $expires_at = null,
         public Carbon|string|null $created_at = null,
         public Carbon|string|null $updated_at = null,
-        public Carbon|string|null $deleted_at = null,
     )
     {
     }

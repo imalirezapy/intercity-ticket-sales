@@ -2,13 +2,64 @@
 
 namespace Tests\Feature\Services\Auth;
 
+use App\Data\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\ResponseStructure;
 use Tests\TestCase;
-use App\Services\Auth\Features\RegisterFeature;
 
 class RegisterFeatureTest extends TestCase
 {
-    public function test_register_feature()
+    use RefreshDatabase,
+        ResponseStructure;
+
+    private User $user;
+    private string $userPassword = 'password';
+
+    private function setUser(): void
     {
-        $this->markTestIncomplete();
+        $this->user = User::factory()->createOne([
+            'email' => 'test@gmail.com',
+            'password' => $this->userPassword,
+        ]);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->setUser();
+    }
+
+    public function testSuccessfulRegisterUser(): void
+    {
+        $response = $this->postJson('api/v1/register', [
+            'email' => 'newUser@gmail.com',
+            'password' => $this->userPassword,
+        ]);
+
+        $response->assertOk()
+            ->assertJsonStructure($this->responseStructure)
+            ->assertJsonStructure([
+                'data' => [
+                    'user',
+                    'token'
+                ]
+            ])
+            ->assertJson([
+                'data' => [
+                    'user' => [
+                        'email' => 'newUser@gmail.com',
+                    ]
+                ]
+            ]);
+    }
+
+    public function testResponseUnprocessableIfEmailAlreadyExists(): void
+    {
+        $response = $this->postJson('api/v1/register', [
+            'email' => $this->user->email,
+            'password' => $this->userPassword,
+        ]);
+
+        $response->assertUnprocessable();
     }
 }
