@@ -63,7 +63,6 @@ class PlanFactory extends Factory
             'departure_time' => fake()->dateTime(),
             'duration' => fake()->numberBetween(60, 450),
             'total_capacity' => fake()->numberBetween(15, 30),
-            'remain_capacity_r' => fake()->numberBetween(0, 30),
             'bus_type' => fake()->sentence(),
             'price_in_rial' => fake()->numberBetween(70, 150) . "0000000",
             "created_at" => now(),

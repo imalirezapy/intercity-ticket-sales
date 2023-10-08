@@ -32,7 +32,6 @@
     "to": "to",
     "Toggle navigation": "Toggle navigation",
     "Too Many Requests": "Too Many Requests",
-    "Unauthorized": "Unauthorized",
     "Verify Email Address": "Verify Email Address",
     "Whoops!": "Whoops!",
     "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
@@ -42,6 +41,8 @@
     "DEFAULT_FAILED_MESSAGE": "A problem occurred in the requested process.",
     "CREDENTIALS_ERROR": "email or password is wrong.",
     "NEW_TOKEN_GENERATED": "New token generated successfully",
-    "INVALID_SEATS_NUMBERS": "the :numbers seats numbers already booked.",
-    "SUCCESS_BOOKED_PLAN": "Your ticket has been successfully reserved."
+    "INVALID_SEATS_NUMBERS": "the :numbers seat number(s) already reserved.",
+    "SUCCESS_BOOKED_PLAN": "Your ticket has been successfully reserved.",
+    "UNAUTHORIZED": "You don't have permission to access the resource.",
+    "CAPACITY_IS_FULL": "The bus has reached its maximum capacity."
 }

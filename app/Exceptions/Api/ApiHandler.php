@@ -3,6 +3,7 @@
 namespace App\Exceptions\Api;
 
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -15,6 +16,7 @@ class ApiHandler extends ExceptionHandler
      */
     protected array $exceptionMapApi = [
         NotFoundHttpException::class => ApiNotFoundExceptionHandler::class,
+        AuthenticationException::class =>  ApiAuthenticationExceptionHandler::class,
     ];
 
     public function render($request, Throwable $e)

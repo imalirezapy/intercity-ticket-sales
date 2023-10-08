@@ -15,7 +15,7 @@ class PlanSeeder extends Seeder
     public function run(): void
     {
         Plan::factory(50)->has(
-            Booking::factory(10)
+            Booking::factory(5)
         )->create();
     }
 }

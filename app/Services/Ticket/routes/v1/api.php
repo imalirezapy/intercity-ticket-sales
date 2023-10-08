@@ -25,15 +25,21 @@ Route::prefix('v1')->group(function () {
             Route::match(['post', 'get'], '/terminals', 'getTerminals');
         });
 
-    Route::controller(BookingController::class)
-        ->group(function () {
-            Route::post('plans/{planId}/book', 'store')
-                ->whereNumber('planId')
-                ->middleware('plan_exists');
+
+
+    Route::middleware('auth:api')->group(function () {
+
+        Route::controller(BookingController::class)
+            ->group(function () {
+                Route::post('plans/{planId}/book', 'store')
+                    ->whereNumber('planId')
+                    ->middleware(['plan_exists', 'can_book_plan']);
 
 //            Route::delete('bookings/{bookId}', 'delete')
 //                ->whereNumber('bookId')
 //                ->middleware('booking_exists');
 
-        });
+            });
+    });
+
 });
