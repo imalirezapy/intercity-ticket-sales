@@ -2,7 +2,6 @@
 
 namespace App\Composables\DTO;
 
-use App\Data\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class DTO
@@ -13,6 +12,8 @@ abstract class DTO
 
     protected string $repository;
 
+    protected static string $primaryKey = 'id';
+
     const COLUMNS = [];
 
     public static function from(
@@ -21,10 +22,10 @@ abstract class DTO
     {
         return ($model === null)
             ? null
-            : new static(...static::instantiable($model));
+            : new static(...(self::instantiable($model)));
     }
 
-    public function getModel(): User|null
+    public function getModel(): Model|null
     {
         if ($this->model === null) {
             $this->model = $this->findModel();
@@ -46,9 +47,9 @@ abstract class DTO
     }
 
 
-    private static function instantiable(User $model): array|false
+    private static function instantiable(Model $model): array|false
     {
-        return ($model->id === null)
+        return ($model->{static::$primaryKey} === null)
             ? false
             : $model->getAttributes();
     }
@@ -57,8 +58,8 @@ abstract class DTO
     {
         $repository = resolve($this->repository);
 
-        return ($this->id !== null)
-            ? $repository->findModel($this->id)
+        return ($this->{static::$primaryKey} !== null)
+            ? $repository->findModel($this->{static::$primaryKey})
             : null;
     }
 

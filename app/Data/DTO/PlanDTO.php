@@ -3,8 +3,8 @@
 namespace App\Data\DTO;
 
 use App\Composables\DTO\DTO;
-use App\Contracts\Repositories\UserRepositoryInterface;
-use App\Data\Models\User;
+use App\Contracts\Repositories\PlanRepositoryInterface;
+use App\Data\Models\Plan;
 use Illuminate\Support\Carbon;
 
 class PlanDTO extends DTO
@@ -27,9 +27,11 @@ class PlanDTO extends DTO
         'deleted_at',
     ];
 
-    private User|null $model = null;
+    private Plan|null $model = null;
 
-    protected string $repository = UserRepositoryInterface::class;
+    protected static string $primaryKey = 'ulid';
+
+    protected string $repository = PlanRepositoryInterface::class;
 
     public function __construct(
         public string|null        $ulid = null,

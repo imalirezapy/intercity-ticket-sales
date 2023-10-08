@@ -14,7 +14,7 @@ class PlanRepository implements PlanRepositoryInterface
 
     public function findModel(string $id): ?Plan
     {
-        return Plan::where('id', $id)->first();
+        return Plan::find($id);
     }
 
     public function find(string $id): ?PlanDTO
