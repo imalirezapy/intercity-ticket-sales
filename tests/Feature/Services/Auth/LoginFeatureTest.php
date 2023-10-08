@@ -29,6 +29,33 @@ class LoginFeatureTest extends TestCase
         $this->setUser();
     }
 
+    public function testResponseUnprocessableIfPasswordWasWrong(): void
+    {
+        $response = $this->postJson('api/v1/login', [
+            'email' => $this->user->email,
+            'password' => 'wrong-password',
+        ]);
+
+        $response->assertUnprocessable()
+            ->assertJsonStructure($this->responseStructure)
+            ->assertJson([
+                'is_successful' => false,
+            ]);
+    }
+
+    public function testResponseUnprocessableIfEmailNotExists()
+    {
+        $response = $this->postJson('api/v1/login', [
+            'email' => 'notExists@gmail.com',
+            'password' => 'password',
+        ]);
+
+        $response->assertUnprocessable()
+            ->assertJsonStructure([
+                'errors' => [ 'email' ]
+            ]);
+    }
+
     public function testSuccessfulLoginUser(): void
     {
 
@@ -44,18 +71,4 @@ class LoginFeatureTest extends TestCase
                 'data' => [ 'token' ]
             ]);
     }
-
-    public function testResponseUnprocessableIfPasswordWasWrong(): void
-    {
-        $response = $this->postJson('api/v1/login', [
-            'email' => $this->user->email,
-            'password' => 'wrong-password',
-        ]);
-
-        $response->assertUnprocessable()
-            ->assertJsonFragment([
-                'is_successful' => false,
-            ]);
-    }
-
 }

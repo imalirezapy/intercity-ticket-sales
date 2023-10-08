@@ -29,7 +29,17 @@ class RegisterFeatureTest extends TestCase
         $this->setUser();
     }
 
-    public function testSuccessfulRegisterUser(): void
+    public function testResponseUnprocessableIfEmailAlreadyExists()
+    {
+        $response = $this->postJson('api/v1/register', [
+            'email' => $this->user->email,
+            'password' => $this->userPassword,
+        ]);
+
+        $response->assertUnprocessable();
+    }
+
+    public function testSuccessfulRegisterUser()
     {
         $response = $this->postJson('api/v1/register', [
             'email' => 'newUser@gmail.com',
@@ -51,15 +61,5 @@ class RegisterFeatureTest extends TestCase
                     ]
                 ]
             ]);
-    }
-
-    public function testResponseUnprocessableIfEmailAlreadyExists(): void
-    {
-        $response = $this->postJson('api/v1/register', [
-            'email' => $this->user->email,
-            'password' => $this->userPassword,
-        ]);
-
-        $response->assertUnprocessable();
     }
 }
