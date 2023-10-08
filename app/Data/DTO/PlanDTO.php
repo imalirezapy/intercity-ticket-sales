@@ -10,8 +10,7 @@ use Illuminate\Support\Carbon;
 class PlanDTO extends DTO
 {
     const COLUMNS = [
-        'id',
-        'code',
+        'ulid',
         'departure_city',
         'arrival_city',
         'departure_terminal',
@@ -33,8 +32,7 @@ class PlanDTO extends DTO
     protected string $repository = UserRepositoryInterface::class;
 
     public function __construct(
-        public int|null           $id = null,
-        public string|null        $code = null,
+        public string|null        $ulid = null,
         public string|null        $departure_city = null,
         public string|null        $arrival_city = null,
         public string|null        $departure_terminal = null,

@@ -10,13 +10,13 @@ use Laravel\Sanctum\NewAccessToken;
 
 interface PlanRepositoryInterface
 {
-    public function findModel(int $id): ?Plan;
+    public function findModel(string $id): ?Plan;
 
-    public function find(int $id): ?PlanDTO;
+    public function find(string $id): ?PlanDTO;
 
     public function create(PlanDTO $data): ?PlanDTO;
 
-    public function update(int $id, PlanDTO $newData): bool;
+    public function update(string $id, PlanDTO $newData): bool;
 
     public function findByCode(string $code): ?PlanDTO;
 

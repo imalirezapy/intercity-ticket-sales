@@ -55,7 +55,6 @@ class PlanFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => $this->faker->sentence(),
             'departure_city' => $departCity = Arr::random($this->cities),
             'arrival_city' => $arriveCity = Arr::random($this->cities),
             'departure_terminal' => $departCity . '-tr' . fake()->randomNumber(1),

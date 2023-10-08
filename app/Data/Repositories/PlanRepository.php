@@ -5,18 +5,19 @@ namespace App\Data\Repositories;
 use App\Contracts\Repositories\PlanRepositoryInterface;
 use App\Data\DTO\PlanDTO;
 use App\Data\Models\Plan;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 
 class PlanRepository implements PlanRepositoryInterface
 {
 
-    public function findModel(int $id): ?Plan
+    public function findModel(string $id): ?Plan
     {
         return Plan::where('id', $id)->first();
     }
 
-    public function find(int $id): ?PlanDTO
+    public function find(string $id): ?PlanDTO
     {
         return PlanDTO::from(
             $this->findModel($id)
@@ -30,7 +31,7 @@ class PlanRepository implements PlanRepositoryInterface
         return PlanDTO::from($plan);
     }
 
-    public function update(int $id, PlanDTO $newData): bool
+    public function update(string $id, PlanDTO $newData): bool
     {
         return $this->findModel($id)
             ->update($newData->insertable());
@@ -63,12 +64,25 @@ class PlanRepository implements PlanRepositoryInterface
                 ->get();
     }
 
+    # TODO: refactor
     public function getTerminalListByCityCode(string $cityCode): Collection|EloquentCollection
     {
-        return Plan::select('departure_city', 'arrival_city', 'departure_terminal')
+        $plans = Plan::select('departure_city', 'arrival_city', 'departure_terminal', 'arrival_terminal')
             ->where('departure_city', $cityCode)
             ->orWhere('arrival_city', $cityCode)
-            ->distinct('departure_terminal')
+            ->distinct('departure_terminal', 'arrival_terminal')
             ->get();
+
+        $terminals = collect();
+        foreach ($plans as $plan) {
+            if ($plan->arrival_city === $cityCode) {
+                $terminals[] = ['terminal' => $plan->arrival_terminal];
+            } else if ($plan->departure_city === $cityCode) {
+                $terminals[] = ['terminal' => $plan->departure_terminal];
+            }
+        }
+
+        return $terminals;
+
     }
 }

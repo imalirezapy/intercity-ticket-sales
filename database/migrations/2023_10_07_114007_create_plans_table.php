@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plans', function (Blueprint $table) {
-            $table->id();
-            $table->string('code')->unique();
+            $table->ulid()->primary();
             $table->string('departure_city');
             $table->string('arrival_city');
             $table->string('departure_terminal');
