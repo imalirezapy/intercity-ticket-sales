@@ -1,6 +1,10 @@
 # Summary
 Intercity ticket sales service based on [Lucid architecture](https://lucid-architecture.gitbook.io/docs/). 
+#### start up
+ - run ` php artisan migrate --seed `
 
+ - for testing you must create `intercity_ticket_sales_test` database
+ - swagger route "api/documentation" (search feature not exists in swagger)
 # Components
 - Composbles
 - Domains
