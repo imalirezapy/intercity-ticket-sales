@@ -94,6 +94,122 @@
                 }
             }
         },
+        "/api/v1/plans/{planId}/book": {
+            "post": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Reserve a ticket",
+                "operationId": "47ddbf6cfdc098ffc2c69bd0d3ba5c66",
+                "parameters": [
+                    {
+                        "name": "planId",
+                        "in": "path",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "passengers_count": {
+                                        "type": "number",
+                                        "example": "1"
+                                    },
+                                    "seats_numbers": {
+                                        "description": "The count of seats must be equal to passengers_count",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number",
+                                            "example": "10"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful fetch terminals",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable - Invalid passengers_count or seats_numbers",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error - invalid planId",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": {
+                    "sanctum": {}
+                }
+            }
+        },
+        "/api/v1/bookings/{bookingId}": {
+            "delete": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Cancel (delete) Reserved ticket",
+                "operationId": "a0b898321d758a4f472ab513159d9444",
+                "parameters": [
+                    {
+                        "name": "bookingId",
+                        "in": "path",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful fetch terminals",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error - invalid bookingId",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": {
+                    "sanctum": {}
+                }
+            }
+        },
         "/api/v1/plans/departure-cities": {
             "get": {
                 "tags": [
@@ -282,6 +398,16 @@
                         }
                     }
                 }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     }
