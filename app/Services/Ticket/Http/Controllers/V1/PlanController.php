@@ -3,7 +3,9 @@
 namespace App\Services\Ticket\Http\Controllers\V1;
 
 use App\Domains\Ticket\Requests\FetchArrivalCitiesRequest;
+use App\Domains\Ticket\Requests\FetchPlansRequest;
 use App\Domains\Ticket\Requests\FetchTerminalsRequest;
+use App\Services\Ticket\Features\FetchPlansFeature;
 use App\Services\Ticket\Features\GetArrivalCitiesFeature;
 use App\Services\Ticket\Features\GetDepartureCitiesFeature;
 use App\Services\Ticket\Features\GetTerminalsFeature;
@@ -17,6 +19,7 @@ class PlanController extends Controller
         private readonly GetDepartureCitiesFeature $getDepartureCitiesFeature,
         private readonly GetArrivalCitiesFeature $getArrivalCitiesFeature,
         private readonly GetTerminalsFeature $getTerminalsFeature,
+        private readonly FetchPlansFeature $fetchPlansFeature,
     )
     {
     }
@@ -142,5 +145,10 @@ class PlanController extends Controller
     public function getTerminals(FetchTerminalsRequest $request): Response
     {
         return $this->getTerminalsFeature->handle($request);
+    }
+
+    public function search(FetchPlansRequest $request): Response
+    {
+        return $this->fetchPlansFeature->handle($request);
     }
 }

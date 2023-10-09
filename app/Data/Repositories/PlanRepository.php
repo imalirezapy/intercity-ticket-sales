@@ -5,8 +5,10 @@ namespace App\Data\Repositories;
 use App\Contracts\Repositories\PlanRepositoryInterface;
 use App\Data\DTO\PlanDTO;
 use App\Data\Models\Plan;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
 class PlanRepository implements PlanRepositoryInterface
@@ -84,5 +86,26 @@ class PlanRepository implements PlanRepositoryInterface
 
         return $terminals;
 
+    }
+
+    public function getListParametric(array $params, ?int $perPage = null): LengthAwarePaginator
+    {
+        return Plan::where('departure_time', '>', now())
+            ->when(isset($params['arrival_place']) && isset($params['departure_place']), function ($query) use($params){
+                $departPlace = $params['departure_place'];
+                $arrivePlace = $params['arrival_place'];
+                $query->where(function ($q) use($arrivePlace) {
+                    $q->where('arrival_terminal', $arrivePlace)
+                        ->orWhere('arrival_city', $arrivePlace);
+                })->where(function ($q) use($departPlace) {
+                    $q->where('departure_terminal', $departPlace)
+                        ->orWhere('departure_city', $departPlace);
+                });
+            })
+            ->when(isset($params['datetime']), function ($query) use ($params) {
+                $query->where('departure_time', Carbon::createFromTimestamp($params['datetime']));
+            })
+            ->latest()
+            ->paginate($perPage);
     }
 }

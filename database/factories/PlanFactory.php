@@ -60,7 +60,7 @@ class PlanFactory extends Factory
             'departure_terminal' => $departCity . '-tr' . fake()->randomNumber(1),
             'arrival_terminal' => $arriveCity . '-tr' . fake()->randomNumber(1),
             'departure_week_day' => fake()->numberBetween(0, 6),
-            'departure_time' => fake()->dateTime(),
+            'departure_time' => now()->addWeek(),
             'duration' => fake()->numberBetween(60, 450),
             'total_capacity' => fake()->numberBetween(15, 30),
             'bus_type' => fake()->sentence(),

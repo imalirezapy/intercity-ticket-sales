@@ -23,10 +23,11 @@ Route::prefix('v1')->group(function () {
             Route::match(['post', 'get'], '/departure-cities', 'getDepartureCities');
             Route::match(['post', 'get'], '/arrival-cities', 'getArrivalCities');
             Route::match(['post', 'get'], '/terminals', 'getTerminals');
+            Route::match(['post', 'get'], '/search', 'search');
         });
 
 
-
+    // permitted routes
     Route::middleware('auth:api')->group(function () {
 
         Route::controller(BookingController::class)
@@ -35,9 +36,9 @@ Route::prefix('v1')->group(function () {
                     ->whereNumber('planId')
                     ->middleware(['plan_exists', 'can_book_plan']);
 
-            Route::delete('bookings/{bookingId}', 'delete')
-                ->whereNumber('bookingId')
-                ->middleware(['booking_exists', 'user_owns_booking']);
+                Route::delete('bookings/{bookingId}', 'delete')
+                    ->whereNumber('bookingId')
+                    ->middleware(['booking_exists', 'user_owns_booking']);
 
             });
     });

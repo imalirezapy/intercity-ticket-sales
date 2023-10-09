@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Data\DTO\PlanDTO;
 use App\Data\Models\Plan;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 use Laravel\Sanctum\NewAccessToken;
@@ -25,4 +26,6 @@ interface PlanRepositoryInterface
     public function getArrivalCitiesListByDeparture(string $departureCityCode): Collection|EloquentCollection;
 
     public function getTerminalListByCityCode(string $cityCode): Collection|EloquentCollection;
+
+    public function getListParametric(array $params, ?int $perPage = null): LengthAwarePaginator;
 }
