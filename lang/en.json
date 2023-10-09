@@ -44,5 +44,6 @@
     "INVALID_SEATS_NUMBERS": "the :numbers seat number(s) already reserved.",
     "SUCCESS_BOOKED_PLAN": "Your ticket has been successfully reserved.",
     "UNAUTHORIZED": "You don't have permission to access the resource.",
-    "CAPACITY_IS_FULL": "The bus has reached its maximum capacity."
+    "CAPACITY_IS_FULL": "The bus has reached its maximum capacity.",
+    "SUCCESS_BOOKING_DELETED": "Your reserved ticket has been canceled successfully."
 }

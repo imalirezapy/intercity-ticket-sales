@@ -44,5 +44,7 @@
     "INVALID_SEATS_NUMBERS": "شماره صندلی های :numbers قبلا رزرو شده اند.",
     "SUCCESS_BOOKED_PLAN": "بلیط شما با موفقیت رزرو شد.",
     "UNAUTHORIZED": "شما مجوز لازم برای دسترسی به این بخش را ندارید",
-    "CAPACITY_IS_FULL": "ظرفیت اتوبوس تکمیل شده."
+    "CAPACITY_IS_FULL": "ظرفیت اتوبوس تکمیل شده.",
+    "SUCCESS_BOOKING_DELETED": "بلیط رزرو شده شما با موفقیت کنسل شد."
+
 }

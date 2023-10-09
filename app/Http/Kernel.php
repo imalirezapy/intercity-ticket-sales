@@ -68,5 +68,7 @@ class Kernel extends HttpKernel
         // Ticket
         'plan_exists' => \App\Services\Ticket\Http\Middleware\PlanExists::class,
         'can_book_plan' => \App\Services\Ticket\Http\Middleware\CanBookPlan::class,
+        'booking_exists' => \App\Services\Ticket\Http\Middleware\BookingExists::class,
+        'user_owns_booking' => \App\Services\Ticket\Http\Middleware\UserOwnsBooking::class,
     ];
 }

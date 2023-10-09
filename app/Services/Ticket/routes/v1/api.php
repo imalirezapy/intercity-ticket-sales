@@ -35,9 +35,9 @@ Route::prefix('v1')->group(function () {
                     ->whereNumber('planId')
                     ->middleware(['plan_exists', 'can_book_plan']);
 
-//            Route::delete('bookings/{bookId}', 'delete')
-//                ->whereNumber('bookId')
-//                ->middleware('booking_exists');
+            Route::delete('bookings/{bookingId}', 'delete')
+                ->whereNumber('bookingId')
+                ->middleware(['booking_exists', 'user_owns_booking']);
 
             });
     });
