@@ -10,7 +10,8 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Info(
  *     title="intercity ticket sales restful api",
- *     version="1.0"
+ *     version="1.0",
+ *     description="the architecture of this project is based on lucid (https://lucidarch.dev), please read README.md fild for more information"
  * )
  */
 class Controller extends BaseController
