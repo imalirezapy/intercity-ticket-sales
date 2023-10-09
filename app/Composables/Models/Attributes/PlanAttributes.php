@@ -13,7 +13,7 @@ trait PlanAttributes
     public function remainCapacity(): Attribute
     {
         return Attribute::get(
-            fn() => $this->remain_capacity_r + $this->bookings()->sum('count')
+            fn() => $this->total_capacity - ($this->remain_capacity_r + $this->bookings()->sum('count'))
         );
     }
 
