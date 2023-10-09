@@ -2,13 +2,58 @@
 
 namespace Tests\Feature\Services\Ticket;
 
+use App\Composables\Database\Migrations\CallSeeder;
+use App\Enums\TablesEnum;
+use Database\Seeders\PlanSeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\ResponseStructure;
 use Tests\TestCase;
-use App\Services\Ticket\Features\GetDepartureCitiesFeature;
 
 class GetDepartureCitiesFeatureTest extends TestCase
 {
-    public function test_get_departure_cities_feature()
+    use RefreshDatabase,
+        ResponseStructure,
+        CallSeeder;
+
+    private string $cityCode;
+    private string $endpoint = 'api/v1/plans/departure-cities';
+    private array $departureCitiesStructure = [
+        'data' => [
+            "*" => [
+                'departure_city',
+            ]
+        ]
+    ];
+
+    protected function setUp(): void
     {
-        $this->markTestIncomplete();
+        parent::setUp();
+        $this->callSeeder(PlanSeeder::class);
+    }
+
+
+
+    public function testSuccessfulFetchDepartureCities()
+    {
+        $response = $this->getJson($this->endpoint);
+
+        $response->assertOk()
+            ->assertJsonStructure($this->responseStructure)
+            ->assertJsonStructure($this->departureCitiesStructure);
+
+        foreach ($response->original['data'] as $city) {
+            $this->assertDatabaseHas(TablesEnum::PLANS->value, [
+                'departure_city' => $city['departure_city']
+            ]);
+        }
+    }
+
+    public function testDepartureCitiesEndpointSupportPostMethod()
+    {
+        $response = $this->postJson($this->endpoint);
+
+        $response->assertOk()
+            ->assertJsonStructure($this->responseStructure)
+            ->assertJsonStructure($this->departureCitiesStructure);
     }
 }

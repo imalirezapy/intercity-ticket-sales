@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-trait CallsSeederInMigrations
+trait CallSeeder
 {
     private function callSeeder(string $className): void
     {
