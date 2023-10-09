@@ -32,6 +32,22 @@ class GetTerminalsFeatureTest extends TestCase
         $this->setUpCityCode();
     }
 
+    public function testResponseUnprocessableIfCityCodeNotExists()
+    {
+        $response = $this->postJson(
+            uri: $this->endpoint,
+            data: [ 'city_code' => 'this-city-does-not-exists', ]
+        );
+
+        $response->assertUnprocessable()
+            ->assertJsonStructure([
+                'errors' => [
+                    'city_code',
+                ]
+            ]);
+
+    }
+
     public function testSuccessfulFetchTerminals()
     {
         $response = $this->call(

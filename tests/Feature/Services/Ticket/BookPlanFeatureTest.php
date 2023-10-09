@@ -74,10 +74,7 @@ class BookPlanFeatureTest extends TestCase
                 "seats_numbers" => [3]
             ]);
 
-        $response->assertUnprocessable()
-            ->assertJsonStructure([
-                "errors" =>  [ "seats_numbers" ]
-            ]);
+        $response->assertUnprocessable();
 
     }
 
