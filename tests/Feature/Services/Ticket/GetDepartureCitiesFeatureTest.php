@@ -41,10 +41,8 @@ class GetDepartureCitiesFeatureTest extends TestCase
             ->assertJsonStructure($this->responseStructure)
             ->assertJsonStructure($this->departureCitiesStructure);
 
-        foreach ($response->original['data'] as $city) {
-            $this->assertDatabaseHas(TablesEnum::PLANS->value, [
-                'departure_city' => $city['departure_city']
-            ]);
+        foreach ($response->json('data') as $city) {
+            $this->assertDatabaseHas(TablesEnum::PLANS->value, $city);
         }
     }
 

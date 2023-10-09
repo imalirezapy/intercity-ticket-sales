@@ -44,7 +44,7 @@ class GetTerminalsFeatureTest extends TestCase
             ->assertJsonStructure($this->responseStructure)
             ->assertJsonStructure($this->arrivalCitiesStructure);
 
-        foreach ($response->original['data'] as $terminal) {
+        foreach ($response->json('data') as $terminal) {
             $this->assertTrue(str($terminal['terminal'])->startsWith($this->cityCode));
         }
     }

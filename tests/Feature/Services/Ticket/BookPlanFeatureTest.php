@@ -17,6 +17,17 @@ class BookPlanFeatureTest extends TestCase
         WithUser,
         ResponseStructure;
 
+    private array $bookingStructure = [
+        'data' => [
+            'id',
+            'plan_id',
+            'count',
+            'seats_numbers',
+            'expires_at',
+            'created_at',
+        ]
+    ];
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -99,12 +110,7 @@ class BookPlanFeatureTest extends TestCase
 
         $response->assertOk()
             ->assertJsonStructure($this->responseStructure)
-            ->assertJsonStructure([
-                'data' => [
-                    'expires_at',
-                    'created_at',
-                ]
-            ])
+            ->assertJsonStructure($this->bookingStructure)
             ->assertJson([
                 'is_successful' => true,
                 'data' => [

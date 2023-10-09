@@ -47,7 +47,7 @@ class GetArrivalCitiesFeatureTest extends TestCase
             ->assertJsonStructure($this->responseStructure)
             ->assertJsonStructure($this->arrivalCitiesStructure);
 
-        foreach ($response->original['data'] as $cities) {
+        foreach ($response->json('data') as $cities) {
             $this->assertEquals($this->cityCode, $cities['departure_city']);
         }
     }
