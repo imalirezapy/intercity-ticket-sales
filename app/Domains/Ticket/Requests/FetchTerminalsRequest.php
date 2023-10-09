@@ -2,6 +2,8 @@
 
 namespace App\Domains\Ticket\Requests;
 
+
+use App\Services\Ticket\Rules\CityExistsRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FetchTerminalsRequest extends FormRequest
@@ -21,10 +23,12 @@ class FetchTerminalsRequest extends FormRequest
             'city_code' => [
                 'required',
                 'string',
-//                'max:5', # TODO: uncomment in production (PlanSeeder inserted greater than 5)
+//                'max:5', # TODO: uncomment in production (PlanSeeder inserted greater than 5),
+                new CityExistsRule()
             ]
         ];
     }
+
 
     public function getCityCode(): ?string
     {

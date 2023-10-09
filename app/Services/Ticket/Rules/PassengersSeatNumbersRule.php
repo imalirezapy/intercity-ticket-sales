@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Rules;
+namespace App\Services\Ticket\Rules;
 
-use App\Domains\Ticket\Jobs\GetBookingsOfPlanByIdJob;
 use App\Domains\Ticket\Jobs\GetPlanByIdJob;
 use App\Enums\ResponseMessageKeys;
 use Closure;

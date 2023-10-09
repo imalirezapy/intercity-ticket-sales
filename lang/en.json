@@ -45,5 +45,6 @@
     "SUCCESS_BOOKED_PLAN": "Your ticket has been successfully reserved.",
     "UNAUTHORIZED": "You don't have permission to access the resource.",
     "CAPACITY_IS_FULL": "The bus has reached its maximum capacity.",
-    "SUCCESS_BOOKING_DELETED": "Your reserved ticket has been canceled successfully."
+    "SUCCESS_BOOKING_DELETED": "Your reserved ticket has been canceled successfully.",
+    "INVALID_CITY": "The city code is invalid."
 }

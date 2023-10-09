@@ -11,7 +11,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Post(
  *     path="/api/v1/login",
- *     tags={"auth"},
+ *     tags={"Auth"},
  *     summary="Login user with email and password",
  *     @OA\RequestBody(
  *         required=true,

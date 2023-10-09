@@ -2,13 +2,14 @@
     "openapi": "3.0.0",
     "info": {
         "title": "intercity ticket sales restful api",
+        "description": "the architecture of this project is based on lucid (https://lucidarch.dev), please read README.md fild for more information",
         "version": "1.0"
     },
     "paths": {
         "/api/v1/login": {
             "post": {
                 "tags": [
-                    "auth"
+                    "Auth"
                 ],
                 "summary": "Login user with email and password",
                 "requestBody": {
@@ -47,7 +48,7 @@
         "/api/v1/register": {
             "post": {
                 "tags": [
-                    "auth"
+                    "Auth"
                 ],
                 "summary": "register user with email and password",
                 "requestBody": {
@@ -89,6 +90,196 @@
                     },
                     "422": {
                         "description": "Unprocessable - Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/v1/plans/departure-cities": {
+            "get": {
+                "tags": [
+                    "Fetch data"
+                ],
+                "summary": "Fetch departure cities list",
+                "operationId": "ba83a404ea0abe7d7dedc5f875b5dd57",
+                "responses": {
+                    "200": {
+                        "description": "successful fetch cities",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Fetch data"
+                ],
+                "summary": "Fetch departure cities list",
+                "operationId": "10738ed720c6540bff2d7c8e763ca48a",
+                "responses": {
+                    "200": {
+                        "description": "successful fetch cities",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/plans/arrival-cities": {
+            "get": {
+                "tags": [
+                    "Fetch data"
+                ],
+                "summary": "Fetch arrival cities list ",
+                "operationId": "e9522c562abcad6284c11d6b16285a68",
+                "parameters": [
+                    {
+                        "name": "city_code",
+                        "in": "query",
+                        "description": "a valid arrival city code",
+                        "required": true,
+                        "example": "shiraz"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful fetch cities",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable - Invalid city code",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Fetch data"
+                ],
+                "summary": "Fetch arrival cities list ",
+                "operationId": "c0880e17787b49dfa5110ab1b6b60bf3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "city_code": {
+                                        "type": "string",
+                                        "example": "shiraz"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful fetch cities",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable - Invalid city code",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/plans/terminals": {
+            "get": {
+                "tags": [
+                    "Fetch data"
+                ],
+                "summary": "Fetch terminals list ",
+                "operationId": "b8ee6a015a55e175a5d23828f5613131",
+                "parameters": [
+                    {
+                        "name": "city_code",
+                        "in": "query",
+                        "description": "a valid arrival/departure city code",
+                        "required": true,
+                        "example": "shiraz"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful fetch cities",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable - Invalid city code",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Fetch data"
+                ],
+                "summary": "Fetch terminals by arrival/departure city code list ",
+                "operationId": "90f68b55abf0c76901d55527c7dc05ad",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "city_code": {
+                                        "type": "string",
+                                        "example": "shiraz"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful fetch terminals",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable - Invalid city code",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }

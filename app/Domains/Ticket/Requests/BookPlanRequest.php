@@ -4,7 +4,7 @@ namespace App\Domains\Ticket\Requests;
 
 use App\Data\DTO\BookingDTO;
 use App\Domains\Ticket\Jobs\GetPlanByIdJob;
-use App\Rules\PassengersSeatNumbersRule;
+use App\Services\Ticket\Rules\PassengersSeatNumbersRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 
